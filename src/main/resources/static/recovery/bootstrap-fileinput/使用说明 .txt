@@ -1,0 +1,1 @@
+bootstrap上传插件(bootstrap fileinput master)是民间大神开发的bootstrap上传插件，深受大家欢迎，Bootstrap是基于HTML、CSS、JAVASCRIPT的，它简洁灵活，使得Web开发更加快捷。
