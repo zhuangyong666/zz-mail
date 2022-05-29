@@ -82,7 +82,7 @@
           </div>
         </div>
         
-        <div class="row">
+        <#--<div class="row">
           <div class="col-sm-6 col-lg-3">
             <div class="card bg-primary">
               <div class="card-body clearfix">
@@ -130,7 +130,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div>-->
          <#if ylrc_auth != 1>
         <div class="row" id="show-copyright">
           <div class="col-sm-12 col-lg-12">
