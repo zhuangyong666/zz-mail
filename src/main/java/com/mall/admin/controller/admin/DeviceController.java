@@ -1,12 +1,17 @@
 package com.mall.admin.controller.admin;
 
-import com.mall.admin.bean.PageBean;
-import com.mall.admin.entity.common.Student;
+import com.alibaba.fastjson.JSONObject;
+import com.mall.admin.entity.admin.Device;
+import com.mall.admin.server.impl.WebSocketServer;
 import com.mall.admin.service.admin.DeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.io.IOException;
+import java.util.List;
 
 /**
  * @author zhuangyong
@@ -33,5 +38,13 @@ public class DeviceController {
         model.addAttribute("title", "历史数据");
         //model.addAttribute("content", deviceService.listAll());
         return "admin/device/history";
+    }
+
+    @RequestMapping("/update")
+    public void addDeviceInfo(@RequestBody Device device) throws IOException {
+        deviceService.update(device);
+        List<Device> devices = deviceService.listAll();
+        String jsonString = JSONObject.toJSONString(devices);
+        WebSocketServer.sendInfo(jsonString, "1");
     }
 }

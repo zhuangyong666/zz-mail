@@ -33,11 +33,11 @@ public class BaseEntity implements Serializable{
 	@Id
 	private Long id;//唯一id
 	
-	@Column(name="create_time",nullable=false)
+	@Column(name="create_time",nullable=true)
 	@CreatedDate
 	private Date createTime;//创建时间
 	
-	@Column(name="update_time",nullable=false)
+	@Column(name="update_time",nullable=true)
 	@LastModifiedDate
 	private Date updateTime;//更新时间
 	
