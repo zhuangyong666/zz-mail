@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.IOException;
 import java.util.List;
@@ -41,10 +42,12 @@ public class DeviceController {
     }
 
     @RequestMapping("/update")
-    public void addDeviceInfo(@RequestBody Device device) throws IOException {
+    @ResponseBody
+    public boolean addDeviceInfo(@RequestBody Device device) throws IOException {
         deviceService.update(device);
         List<Device> devices = deviceService.listAll();
         String jsonString = JSONObject.toJSONString(devices);
         WebSocketServer.sendInfo(jsonString, "1");
+        return true;
     }
 }
