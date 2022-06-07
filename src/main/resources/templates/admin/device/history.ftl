@@ -62,7 +62,6 @@
                 xAxisData[i] = data[i].createTime;
                 yAxisData[i] = data[i].temperature;
             }
-            debugger;
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {      //请求失败函数
         },
@@ -73,7 +72,7 @@
     option = {
         xAxis: {
             type: 'category',
-            data: xAxisData
+            data: xAxisData,
         },
         yAxis: {
             type: 'value'
@@ -82,7 +81,14 @@
             {
                 data: yAxisData,
                 type: 'line',
-                smooth: true
+                smooth: true,
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true // 在折线拐点上显示数据
+                        }
+                    }
+                }
             }
         ]
     };
