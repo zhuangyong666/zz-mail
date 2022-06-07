@@ -6,6 +6,7 @@ import com.mall.admin.entity.admin.Device;
 import com.mall.admin.entity.admin.DeviceHistory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -27,7 +28,7 @@ public class DeviceService {
     private DeviceHistoryDao deviceHistoryDao;
 
     public List<Device> listAll() {
-        return deviceDao.findAll();
+        return deviceDao.findAll(Sort.by(Sort.Direction.ASC, "createTime"));
     }
 
     public void update(Device device) {
@@ -51,5 +52,12 @@ public class DeviceService {
         deviceHistory.setState(device.getState());
         deviceHistory.setTemperature(device.getTemperature());
         deviceHistoryDao.save(deviceHistory);
+    }
+
+    public List<DeviceHistory> listDeviceHistory(Long deviceId) {
+        DeviceHistory deviceHistory = new DeviceHistory();
+        deviceHistory.setDeviceId(deviceId);
+        Example<DeviceHistory> deviceHistoryExample = Example.of(deviceHistory);
+        return deviceHistoryDao.findAll(deviceHistoryExample, Sort.by(Sort.Direction.ASC, "createTime"));
     }
 }

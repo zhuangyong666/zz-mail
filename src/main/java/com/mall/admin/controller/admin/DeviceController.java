@@ -2,6 +2,7 @@ package com.mall.admin.controller.admin;
 
 import com.alibaba.fastjson.JSONObject;
 import com.mall.admin.entity.admin.Device;
+import com.mall.admin.entity.admin.DeviceHistory;
 import com.mall.admin.server.impl.WebSocketServer;
 import com.mall.admin.service.admin.DeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.IOException;
@@ -37,8 +39,13 @@ public class DeviceController {
     @RequestMapping(value = "/history")
     public String history(Model model) {
         model.addAttribute("title", "历史数据");
-        //model.addAttribute("content", deviceService.listAll());
         return "admin/device/history";
+    }
+
+    @RequestMapping(value = "/historyInfo")
+    @ResponseBody
+    public List<DeviceHistory> historyInfo(@RequestParam(name = "id", required = true) Long id) {
+        return deviceService.listDeviceHistory(id);
     }
 
     @RequestMapping("/update")
