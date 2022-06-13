@@ -108,7 +108,7 @@
         console.log("您的浏览器不支持WebSocket");
     } else {
         //实现化WebSocket对象，指定要连接的服务器地址与端口建立连接
-        socket = new WebSocket("ws://localhost/websocket/1");
+        socket = new WebSocket("ws://115.29.148.65/websocket/1");
         //打开事件
         socket.onopen = function (O) {
             console.log("Socket 已打开");
